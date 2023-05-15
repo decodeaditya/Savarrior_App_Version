@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "310461744278",
+    "project_id": "savarrior-web",
+    "storage_bucket": "savarrior-web.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310461744278:android:d7e23ae69a90034fc26eb7",
+        "android_client_info": {
+          "package_name": "com.devcost.savarrior"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "310461744278-d0gto71uvdg4dv72shabn88oqloe7ud5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZsKDygyk_5nbUFIedqDjSQ3qu3FQ2-6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "310461744278-d0gto71uvdg4dv72shabn88oqloe7ud5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

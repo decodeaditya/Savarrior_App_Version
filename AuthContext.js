@@ -1,4 +1,4 @@
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signInWithCustomToken } from "firebase/auth";
 import { createContext, useState, useEffect, useRef } from "react";
 import { auth, db } from './firebase';
 import * as Location from 'expo-location'
@@ -27,9 +27,9 @@ export const AuthContextProvider = ({ children }) => {
     const [CurrentUser, setCurrentUser] = useState(null)
     const [locationServicesEnabled, setlocationServicesEnabled] = useState(false);
     const [newCoords, setCoords] = useState(null)
-    const [displayCurrentAddress, setdisplayCurrentAddress] = useState(
-        "We are loading your Location"
-    );
+    const [displayCurrentAddress, setdisplayCurrentAddress] = useState({
+        address:"Fetching Your Location"
+    });
 
     const [expoPushToken, setExpoPushToken] = useState('');
     const [notification, setNotification] = useState(false);
@@ -52,10 +52,9 @@ export const AuthContextProvider = ({ children }) => {
                 [
                     {
                         text: "Cancel",
-                        onPress: () => console.log("Cancel Pressed"),
                         style: "cancel",
                     },
-                    { text: "OK", onPress: () => console.log("OK Pressed") },
+                    { text: "OK" },
                 ],
                 { cancelable: false }
             );
@@ -75,10 +74,9 @@ export const AuthContextProvider = ({ children }) => {
                 [
                     {
                         text: "Cancel",
-                        onPress: () => console.log("Cancel Pressed"),
                         style: "cancel",
                     },
-                    { text: "OK", onPress: () => console.log("OK Pressed") },
+                    { text: "OK"}
                 ],
                 { cancelable: false }
             );
@@ -96,18 +94,32 @@ export const AuthContextProvider = ({ children }) => {
                 longitude,
             });
 
-            // console.log(response)
 
             for (let item of response) {
                 let address = `${item.name} ${item.city} ${item.postalCode}`;
-                setdisplayCurrentAddress(address);
+                setdisplayCurrentAddress({
+                    address:address,
+                    city:item.city,
+                    region:item.region
+                });
             }
         };
     };
 
     useEffect(() => {
-        const AuthState = onAuthStateChanged(auth, (user) => {
+        const AuthState = onAuthStateChanged(auth, async (user) => {
             setCurrentUser(user)
+            getCurrentLocation()
+            const LocalUserData = await AsyncStorage.getItem("UserData")
+            if (LocalUserData === null || user !== null) {
+                await AsyncStorage.setItem("UserData", JSON.stringify(user))
+                const updatedUser = await AsyncStorage.getItem("UserData")
+                setCurrentUser(JSON.parse(updatedUser))
+            }
+            else if (LocalUserData !== null) {
+                const updatedUser = await AsyncStorage.getItem("UserData")
+                setCurrentUser(JSON.parse(updatedUser))
+            }
         })
 
         return () => {

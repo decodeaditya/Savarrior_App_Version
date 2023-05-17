@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "savarriorApp",
+    "name": "Savarrior",
     "slug": "savarriorApp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -27,6 +27,11 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "plugins": [
+      [
+        "expo-notifications"
+      ]
+    ],
     "extra": {
       "eas": {
         "projectId": "3f56db66-5436-48f6-9766-aa62936df7ae"

@@ -38,7 +38,7 @@ const SingleRescueScreen = ({ navigation }) => {
                         paddingTop: 5
                     }}>
                         <Ionicons name='location-sharp' size={24} color={colors.primary} style={{ paddingRight: 5 }} />
-                        <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, width: screenWidth / 2.1, color: colors.font }} numberOfLines={2}>Prayagraj</Text>
+                        <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, color: colors.font,paddingRight:10 }} numberOfLines={2}>{data.location.formattedLocation}</Text>
                     </Pressable>
                 </View>
                 <View style={{ flexDirection: "row", justifyContent: "center", marginHorizontal: 10 }}>
@@ -78,15 +78,6 @@ const SingleRescueScreen = ({ navigation }) => {
                     <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, color: colors.font }}>{data.date}, {data.time}</Text>
                 </Pressable>
                 <View style={{ borderTopWidth: 2, borderTopColor: "#f5f5f5" }} />
-                <Pressable style={{
-                    flexDirection: "row",
-                    justifyContent: "flex-start", alignItems: "center",
-                    width: "100%",
-                    paddingVertical: 20, paddingHorizontal: 20
-                }}>
-                    <Ionicons name='map-outline' size={24} color={colors.primary} style={{ paddingRight: 10, }} />
-                    <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, width: '90%', color: colors.font }}>{data.location.formattedLocation}</Text>
-                </Pressable>
             </ScrollView>
             <Pressable style={{ padding: 10, elevation: 10 }}>
                 <Button title='Call Now' style={{ borderRadius: 10 }} textStyle={{ color: colors.white }} onPress={()=>Linking.openURL(`tel:${data.phoneNumber}`)}/>

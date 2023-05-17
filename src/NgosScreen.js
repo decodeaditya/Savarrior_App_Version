@@ -59,10 +59,10 @@ const NgosScreen = ({ navigation }) => {
                     <NgoCard data={res} key={index} style={{ width: "100%", marginBottom: 25 }} />
                 ))}
                  {list.length === 0 &&
-                    <View style={{ justifyContent: "center", alignItems: "center",height:screenHeight/2 }}>
-                        <Image source={{ uri: 'https://img.freepik.com/premium-vector/no-data-concept-illustration_203587-28.jpg?w=2000' }} style={{ width: 170, height: 170 }} />
-                        <Text style={{ fontFamily: FontVariants.weight600, fontSize: 17, color: colors.fontGray }}>No Organizations Found...</Text>
-                    </View>
+                     <View style={{ justifyContent: "center", alignItems: "center", height: screenHeight / 2 }}>
+                     <Image source={{ uri: 'https://img.freepik.com/free-vector/hand-drawn-facepalm-illustration_23-2150199871.jpg?w=2000' }} style={{ width: 150, height: 150 }} />
+                     <Text style={{ fontFamily: FontVariants.weight700, fontSize: 19, color: colors.fontGray, textTransform: "uppercase" }}>No Organizations Found</Text>
+                 </View>
                 }
                 <View style={{ height: 120 }} />
             </ScrollView>

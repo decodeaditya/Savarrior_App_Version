@@ -38,8 +38,8 @@ const NotificationScreen = ({ navigation }) => {
         <ScrollView style={{ flex: 1, backgroundColor: colors.white, paddingHorizontal: 10 }}>
             {AlertList.length === 0 && 
             <View style={{justifyContent:"center",alignItems:"center",height:screenHeight/1.2}}>
-                <Image source={{uri:"https://cdn.dribbble.com/users/1373705/screenshots/6457914/no_notification_yiran.png?compress=1&resize=400x300"}} style={{width:180,height:180}}/>
-                <Text style={{fontSize:18,fontFamily:FontVariants.weight600,color:colors.fontGray}}>No Notifications Yet!</Text>
+                <Image source={{uri:"https://img.freepik.com/premium-vector/mobile-phone-with-sms-notifications-flat-design_161534-16.jpg?w=2000"}} style={{width:200,height:200}}/>
+                <Text style={{fontSize:18,fontFamily:FontVariants.weight800,color:colors.fontGray,textTransform:"uppercase"}}>No Notifications Yet!</Text>
             </View>}
             {AlertList.map((res, index) => (
                     <Notification data={res} key={index} AlertList={AlertList}/>

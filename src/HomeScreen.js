@@ -20,12 +20,12 @@ import { Linking } from 'react-native'
 
 const HomeScreen = ({ navigation }) => {
 
-    const { displayCurrentAddress, CurrentUser,AlertList } = useContext(AuthContext)
+    const { displayCurrentAddress, CurrentUser, AlertList } = useContext(AuthContext)
     const { RescuesList, NgosList } = useContext(FirebaseContext)
 
     const showLocation = () => {
-        Alert.alert('Your Location', displayCurrentAddress, [
-            { text: 'OK'}
+        Alert.alert('Your Location', displayCurrentAddress.address, [
+            { text: 'OK' }
         ]);
     }
 
@@ -53,7 +53,7 @@ const HomeScreen = ({ navigation }) => {
                     elevation: 3, paddingHorizontal: 10, marginHorizontal: 10, borderRadius: 50, backgroundColor: "#fff", paddingVertical: 10, justifyContent: "center", alignItems: 'center'
                 }}>
                     <Ionicons name='location-outline' size={18} />
-                    <Text style={{ fontSize: 16, color: colors.font, fontFamily: FontVariants.weight600, width: "85%", marginLeft: 5 }} numberOfLines={1}>{displayCurrentAddress}</Text>
+                    <Text style={{ fontSize: 16, color: colors.font, fontFamily: FontVariants.weight600, width: "85%", marginLeft: 5 }} numberOfLines={1}>{displayCurrentAddress.address}</Text>
                 </Pressable>
                 <Ionicons name='md-notifications-outline' size={25} onPress={() => navigation.navigate("Alert")} />
             </View>
@@ -101,7 +101,7 @@ const HomeScreen = ({ navigation }) => {
                         <Button title='See All' style={{ backgroundColor: "#def5ef", borderWidth: 0.9, borderColor: colors.primary, borderRadius: 20, }} textStyle={{ fontSize: 16, color: colors.font }} onPress={() => { navigation.navigate("Rescues") }} />
                     </View>
                     <View style={{ marginTop: 25 }}>
-                        {RescuesList.map((res, index) => (
+                        {RescuesList.slice(Math.max(RescuesList.length - 5,0)).map((res, index) => (
                             <RescueCard key={index} data={res} />
                         ))}
                     </View>
@@ -113,8 +113,8 @@ const HomeScreen = ({ navigation }) => {
                     }
                     {RescuesList.length === 0 &&
                         <View style={{ justifyContent: "center", alignItems: "center", height: screenHeight / 3 }}>
-                            <Image source={{ uri: 'https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-10850.jpg?w=740&t=st=1684039576~exp=1684040176~hmac=b875db0233fd25e94811f2e2bb18ebb1bb9da339b640e57756b359d35d3ea941' }} style={{ width: 170, height: 170 }} />
-                            <Text style={{ marginTop: 10, fontFamily: FontVariants.weight700, fontSize: 19, color: colors.fontGray }}>No Rescues Found...</Text>
+                            <Image source={{ uri: 'https://i.pinimg.com/originals/c6/d6/08/c6d6089fc2b74cb603348cc2dbb0e1cd.png' }} style={{ width: 150, height: 150 }} />
+                            <Text style={{fontFamily: FontVariants.weight800, fontSize: 19, color: colors.fontGray,textTransform:"uppercase" }}>No Rescues Found</Text>
                         </View>
                     }
                 </View>

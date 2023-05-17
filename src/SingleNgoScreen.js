@@ -42,7 +42,7 @@ const SingleNgoScreen = ({ navigation }) => {
                         paddingRight: 10
                     }}>
                         <Ionicons name='location-outline' size={24} color={colors.primary} />
-                        <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, width: screenWidth / 2.1, color: colors.font }} numberOfLines={2}>Himachal Pradesh</Text>
+                        <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, width: screenWidth / 2.1, color: colors.font }} numberOfLines={2}>{data.city}</Text>
                     </Pressable>
                 </View>
                 <View style={{ paddingHorizontal: 20, flexDirection: "row", alignItems: 'center', justifyContent: "space-between" }}>
@@ -103,7 +103,7 @@ const SingleNgoScreen = ({ navigation }) => {
                         paddingVertical: 20, paddingHorizontal: 20
                     }}>
                         <Ionicons name='globe-outline' size={24} color={colors.primary} style={{ paddingRight: 10, }} />
-                        <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, width: '90%', color: colors.font }}>www.peepalfarm.org</Text>
+                        <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, width: '90%', color: colors.font }}>{data.web}</Text>
                     </Pressable>}
 
                 <View style={{ borderTopWidth: 2, borderTopColor: "#f5f5f5", marginBottom: 10 }} />

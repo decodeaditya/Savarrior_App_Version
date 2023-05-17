@@ -59,9 +59,9 @@ const RescuesScreen = ({ navigation }) => {
                     <RescueCard data={res} key={index} />
                 ))}
                 {list.length === 0 &&
-                    <View style={{ justifyContent: "center", alignItems: "center",height:screenHeight/2 }}>
-                        <Image source={{ uri: 'https://img.freepik.com/premium-vector/no-data-illustration-concept_108061-573.jpg' }} style={{ width: 170, height: 170 }} />
-                        <Text style={{ fontFamily: FontVariants.weight600, fontSize: 17, color: colors.fontGray }}>No Rescues Found</Text>
+                    <View style={{ justifyContent: "center", alignItems: "center", height: screenHeight / 2 }}>
+                        <Image source={{ uri: 'https://img.freepik.com/free-vector/hand-drawn-facepalm-illustration_23-2150199871.jpg?w=2000' }} style={{ width: 150, height: 150 }} />
+                        <Text style={{ fontFamily: FontVariants.weight700, fontSize: 19, color: colors.fontGray, textTransform: "uppercase" }}>No Rescues Found</Text>
                     </View>
                 }
                 <View style={{ height: 120 }} />

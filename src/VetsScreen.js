@@ -21,8 +21,7 @@ const VetsScreen = ({ navigation }) => {
                 </Pressable>
                 <Text style={{ fontSize: 24, fontFamily: FontVariants.weight700, color: colors.secondry }}>Vets</Text>
             </View>
-            <View style={{ borderTopWidth: 4, borderTopColor: '#f5f5f5', marginVertical: 15, marginBottom: 0 }} />
-            <View style={{ paddingHorizontal: 25, backgroundColor: colors.bgGreen,flex:1,justifyContent:"center" }}>
+            <View style={{ paddingHorizontal: 25, backgroundColor: colors.white,flex:1,justifyContent:"center" }}>
                 <Pressable style={{ borderRadius: 10, justifyContent: "center", paddingBottom: 20 }}>
                     <View style={{ justifyContent: 'center', alignItems: "center", marginBottom: 10 }}>
                         <Image source={{ uri: "https://wellhavenpethealthlt.com/wp-content/uploads/2018/08/tell-us-vets.png" }} style={{ width: 190, height: 213 }} />

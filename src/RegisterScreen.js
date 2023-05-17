@@ -17,7 +17,7 @@ const RegisterScreen = () => {
 
     const [email, setEmail] = useState('')
     const [code, setCode] = useState('')
-
+    const [name,setName] = useState('')
 
     const emailRegex = new RegExp(/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/)
 
@@ -37,8 +37,8 @@ const RegisterScreen = () => {
             try {
                 const res = await createUserWithEmailAndPassword(auth, email, code)
                 updateProfile(res.user, {
-                    displayName: "Guest",
-                    photoURL: "https://img.freepik.com/premium-vector/anonymous-user-flat-icon-vector-illustration-with-long-shadow_520826-1932.jpg",
+                    displayName: name,
+                    photoURL: "https://cdn-icons-png.flaticon.com/512/4305/4305692.png",
                 })
                 await sendEmailVerification(res.user)
                 signOut(auth)
@@ -75,6 +75,14 @@ const RegisterScreen = () => {
                     <View style={{ marginTop: 15 }}>
 
                         <Text style={{ fontSize: 18, paddingHorizontal: 10, color: colors.fontGray, fontFamily: FontVariants.weight600 }}>Want to Help Animals? Register to Get Started!</Text>
+                        <View
+                            style={{
+                                fontSize: 18, fontFamily: FontVariants.weight500, paddingHorizontal: 20, backgroundColor: "#f5f5f5", paddingVertical: 15, marginHorizontal: 10, marginTop: 15, borderRadius: 10, flexDirection: 'row', alignItems: "center"
+                            }}
+                        >
+                            <TextInput
+                                autoCompleteType="name" style={{ fontSize: 18, fontFamily: FontVariants.weight500, width: "90%", color: colors.fontGray }} value={name} onChangeText={setName} placeholder='Enter Your Name' />
+                        </View>
                         <View
                             style={{
                                 fontSize: 18, fontFamily: FontVariants.weight500, paddingHorizontal: 20, backgroundColor: "#f5f5f5", paddingVertical: 15, marginHorizontal: 10, marginTop: 15, borderRadius: 10, flexDirection: 'row', alignItems: "center"

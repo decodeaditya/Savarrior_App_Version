@@ -16,7 +16,7 @@ const RescueCard = ({data}) => {
         <TouchableOpacity onPress={()=>navigation.navigate("SingleRescue",data)} activeOpacity={1} style={{ ...styles.shadow, borderWidth: 0.4, borderColor: colors.lightGreen, backgroundColor: '#f1faf7', padding: 15, borderRadius: 10, marginBottom: 30 }}>
             <View style={{ flexDirection: "row", justifyContent: 'space-between', alignItems: "center", paddingBottom: 10 }}>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <Image source={{ uri: data.userProfileImg }} style={{ width: 40, height: 35, borderRadius: 10 }} />
+                    <Image source={{ uri: data.userProfileImg }} style={{ width: 40, height: 40, borderRadius: 10 }} />
                     <Text style={{ color: colors.font, fontSize: 16, fontFamily: FontVariants.weight500, marginLeft: 10 }}>{data.name}</Text>
                 </View>
                 <View>

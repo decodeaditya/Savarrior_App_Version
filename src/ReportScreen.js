@@ -1,8 +1,6 @@
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, View, Alert } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { FontVariants, colors } from '../theme';
-import { Feather } from '@expo/vector-icons'
-import { TextInput } from 'react-native';
 import { ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Pressable } from 'react-native';
@@ -24,7 +22,7 @@ const ReportScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false)
   const [imagepath, setImagepath] = useState(null)
   const [ContactNo, setPhone] = useState(null)
-  const {tokens} = useContext(FirebaseContext)
+  const { tokens } = useContext(FirebaseContext)
 
   const getPhone = async () => {
     const Phone = await AsyncStorage.getItem("Phone")
@@ -35,54 +33,59 @@ const ReportScreen = ({ navigation }) => {
     getPhone()
   })
 
+  const phoneRegex = new RegExp(/^(0|91)?[6-9][0-9]{9}$/)
+
   const handleRescue = async () => {
     const imageName = `rescue${CurrentUser?.displayName}${CurrentUser?.uid}${new Date().getMilliseconds() * 123}`
     const date = new Date().toLocaleString('en-IN', dateOptions)
     const time = formatAMPM(new Date)
 
-    try {
-      const imageUrl = await uploadImageAsync(imagepath, imageName)
-      await setDoc(doc(db, 'rescues', imageName), {
-        id: imageName,
-        name: CurrentUser?.displayName,
-        phoneNumber: `+91${ContactNo}`,
-        location: {
-          formattedLocation: displayCurrentAddress,
-          coords: newCoords
-        },
-        photoUrl: imageUrl,
-        userProfileImg: CurrentUser?.photoURL,
-        date: date,
-        time: time
-      })
-      if (imageUrl) {
-        setImagepath(defaultImg)
-        setLoading(false)
-        navigation.navigate("Success")
-        schedulePushNotification(tokens,{
-          heading: `Rescue Located By ${CurrentUser?.displayName}`,
-          msg: `A Rescue is Reported at ${displayCurrentAddress}`,
-          data: {
-            id: imageName,
-            name: CurrentUser?.displayName,
-            phoneNumber: `+91${ContactNo}`,
-            location: {
-              formattedLocation: displayCurrentAddress,
-              coords: newCoords
-            },
-            photoUrl: imageUrl,
-            userProfileImg: CurrentUser?.photoURL,
-            date: date,
-            time: time
-          }
+    if (ContactNo && imagepath && newCoords) {
+      try {
+        const imageUrl = await uploadImageAsync(imagepath, imageName)
+        await setDoc(doc(db, 'rescues', imageName), {
+          id: imageName,
+          name: CurrentUser?.displayName,
+          phoneNumber: `+91${ContactNo}`,
+          location: {
+            formattedLocation: displayCurrentAddress.address,
+            coords: newCoords
+          },
+          photoUrl: imageUrl,
+          userProfileImg: CurrentUser?.photoURL,
+          date: date,
+          time: time
         })
+        if (imageUrl) {
+          setImagepath(defaultImg)
+          setLoading(false)
+          navigation.navigate("Success")
+          schedulePushNotification(tokens, {
+            heading: `Rescue Located By ${CurrentUser?.displayName}`,
+            msg: `A Rescue is Reported at ${displayCurrentAddress.address}`,
+            data: {
+              id: imageName,
+              name: CurrentUser?.displayName,
+              phoneNumber: `+91${ContactNo}`,
+              location: {
+                formattedLocation: displayCurrentAddress.address,
+                coords: newCoords
+              },
+              photoUrl: imageUrl,
+              userProfileImg: CurrentUser?.photoURL,
+              date: date,
+              time: time
+            }
+          })
+        }
+
+        setLoading(false)
+
       }
-
-      setLoading(false)
-
-    }
-    catch (err) {
-      setLoading(false)
+      catch (err) {
+        console.log(err)
+        setLoading(false)
+      }
     }
   }
 
@@ -109,8 +112,20 @@ const ReportScreen = ({ navigation }) => {
 
 
   const submitRescue = async () => {
-    if (!imagepath) {
+    if (!phoneRegex.test(ContactNo)) {
+      Alert.alert('Invalid Phone Number', "Enter Valid Phone Number in Profile", [
+        { text: 'OK' },
+
+      ]);
+    }
+    else if (!imagepath) {
       Alert.alert('No Image Uploaded', "Click a Image of Animal", [
+        { text: 'OK' },
+
+      ]);
+    }
+    else if (!newCoords) {
+      Alert.alert('Invalid Location', "Please Wait for Location to fetch or Reload the App", [
         { text: 'OK' },
 
       ]);
@@ -153,7 +168,7 @@ const ReportScreen = ({ navigation }) => {
           </View>
           <View style={{ marginVertical: 10 }}>
             <Text style={{ fontSize: 18, paddingHorizontal: 10, color: colors.font, fontFamily: FontVariants.weight500 }}>Location</Text>
-            <Text style={{ fontSize: 18, fontFamily: FontVariants.weight500, paddingHorizontal: 20, backgroundColor: "#f5f5f5", paddingVertical: 15, marginHorizontal: 10, marginTop: 10, borderRadius: 10, color: colors.fontGray }}>{displayCurrentAddress}</Text>
+            <Text style={{ fontSize: 18, fontFamily: FontVariants.weight500, paddingHorizontal: 20, backgroundColor: "#f5f5f5", paddingVertical: 15, marginHorizontal: 10, marginTop: 10, borderRadius: 10, color: colors.fontGray }}>{displayCurrentAddress.address}</Text>
           </View>
           <View style={{ marginVertical: 10 }}>
             <Text style={{ fontSize: 18, paddingHorizontal: 10, color: colors.font, fontFamily: FontVariants.weight500 }}>Animal's Image</Text>

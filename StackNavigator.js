@@ -191,7 +191,7 @@ const StackNavigator = () => {
 
     const UnAuthNav = () => (
         <Stack.Navigator>
-         {isFirstLaunch&&    <Stack.Screen name="OnBoarding" component={OnBoardingScreen} options={{ headerTitle: () => (<Image source={require("./assets/logo.png")} style={{ width: 140, height: 40, marginTop: 10 }} />), headerTitleAlign: 'center', headerShadowVisible: false, }} />}
+         {isFirstLaunch&& <Stack.Screen name="OnBoarding" component={OnBoardingScreen} options={{ headerTitle: () => (<Image source={require("./assets/logo.png")} style={{ width: 140, height: 40, marginTop: 10 }} />), headerTitleAlign: 'center', headerShadowVisible: false, }} />}
             <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
         </Stack.Navigator>

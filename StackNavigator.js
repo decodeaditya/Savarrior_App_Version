@@ -25,6 +25,7 @@ import SuccessScreen from './src/SuccessScreen'
 import MapScreen from './src/MapScreen'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { AuthContext } from './AuthContext'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const StackNavigator = () => {
 
@@ -173,7 +174,9 @@ const StackNavigator = () => {
     }, [])
 
     if (!fontLoaded) {
-        return <Text>Loading</Text>
+        return <SafeAreaView>
+            <Image source={require("./assets/splash.png")} style={{width:"100%",height:"100%"}}/>
+        </SafeAreaView>
     }
 
     const AuthNav = () => (

@@ -3,7 +3,7 @@ import { createContext, useState, useEffect, useRef } from "react";
 import { auth, db } from './firebase';
 import * as Location from 'expo-location'
 import { Alert } from "react-native";
-import { fetchAddress } from './consts';
+import { fetchAddress } from './utils/const';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
@@ -28,7 +28,7 @@ export const AuthContextProvider = ({ children }) => {
     const [locationServicesEnabled, setlocationServicesEnabled] = useState(false);
     const [newCoords, setCoords] = useState(null)
     const [displayCurrentAddress, setdisplayCurrentAddress] = useState({
-        address:"Fetching Your Location"
+        address: "Fetching Your Location"
     });
 
     const [expoPushToken, setExpoPushToken] = useState('');
@@ -39,8 +39,13 @@ export const AuthContextProvider = ({ children }) => {
     const navigation = useNavigation()
 
     useEffect(() => {
-        checkIfLocationEnabled();
-        getCurrentLocation();
+        try {
+            checkIfLocationEnabled();
+            getCurrentLocation();
+        }
+        catch (err) {
+            console.log(err)
+        }
     }, []);
 
     const checkIfLocationEnabled = async () => {
@@ -76,14 +81,13 @@ export const AuthContextProvider = ({ children }) => {
                         text: "Cancel",
                         style: "cancel",
                     },
-                    { text: "OK"}
+                    { text: "OK" }
                 ],
                 { cancelable: false }
             );
         }
 
-        const { coords } = await Location.getCurrentPositionAsync();
-        // console.log(coords)
+        const { coords } = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Highest, maximumAge: 10000 });
         if (coords) {
             const { latitude, longitude } = coords;
 
@@ -98,18 +102,26 @@ export const AuthContextProvider = ({ children }) => {
             for (let item of response) {
                 let address = `${item.name} ${item.city} ${item.postalCode}`;
                 setdisplayCurrentAddress({
-                    address:address,
-                    city:item.city,
-                    region:item.region
+                    address: address,
+                    city: item.city,
+                    region: item.region
                 });
             }
+
         };
+
     };
+
 
     useEffect(() => {
         const AuthState = onAuthStateChanged(auth, async (user) => {
             setCurrentUser(user)
-            getCurrentLocation()
+            try {
+                getCurrentLocation()
+            }
+            catch (err) {
+                console.log(err)
+            }
             const LocalUserData = await AsyncStorage.getItem("UserData")
             if (LocalUserData === null || user !== null) {
                 await AsyncStorage.setItem("UserData", JSON.stringify(user))

@@ -61,7 +61,7 @@ const ProfileScreen = ({ navigation }) => {
 
     const handleNgo = async () => {
         setLoading(!loading)
-        if (animals.length !== 0 && services.length !== 0 && img1 && img2) {
+        if (animals.length !== 0 && services.length !== 0 && img1 && img2 && mobile) {
             try {
                 const ngoId = `ngo${CurrentUser?.displayName}${CurrentUser?.uid}`
                 await setDoc(doc(db, 'ngos', ngoId), {
@@ -198,7 +198,7 @@ const ProfileScreen = ({ navigation }) => {
                 <Image source={{ uri: CurrentUser.photoURL }} style={{ borderRadius: 20, width: 120, height: 120 }} />
                 <Text style={{ fontSize: 27, marginTop: 10, fontFamily: FontVariants.weight800, color: colors.font, }}>{CurrentUser.displayName}</Text>
                 <Text style={{ fontSize: 18, marginTop: 3, fontFamily: FontVariants.weight700, color: colors.fontGray,}}>{userNgo ? "Animal Welfare NGO" : "Warrior for Animals"}</Text>
-                <Button onPress={signout} title='Logout' style={{ marginTop: 3, fontFamily: FontVariants.weight700, backgroundColor: colors.primary, borderRadius: 10, marginTop: 19 }} textStyle={{ color: '#fff' }} />
+                <Button onPress={signout} title='Logout' style={{fontFamily: FontVariants.weight700, backgroundColor: colors.primary, borderRadius: 4, marginTop: 19 }} textStyle={{ color: '#fff',fontSize:16,textTransform:"uppercase",fontFamily:FontVariants.weight600 }} />
             </Pressable>
             <Pressable style={{ flexDirection: 'row', marginTop: 20, marginHorizontal: 15, padding: 10, backgroundColor: "whitesmoke", borderRadius: 10 }}>
                 <Button title='My Rescues' style={{ ...styles.shadow, width: "48%", backgroundColor: selectedTab === 'rescues' ? '#fff' : 'whitesmoke', marginRight: 10, borderRadius: 10, elevation: selectedTab === "rescues" ? 3 : 0 }} textStyle={{ color: selectedTab === 'rescues' ? colors.font : colors.fontGray }} onPress={() => setSelectedTab('rescues')} />
@@ -228,13 +228,13 @@ const ProfileScreen = ({ navigation }) => {
                         <Text style={{ fontSize: 18, paddingHorizontal: 10, color: colors.font, fontFamily: FontVariants.weight500 }}>Location</Text>
                         <Text style={{ fontSize: 18, fontFamily: FontVariants.weight500, paddingHorizontal: 20, backgroundColor: "#f5f5f5", paddingVertical: 15, marginHorizontal: 10, marginTop: 10, borderRadius: 10, color: colors.secondry }}>{displayCurrentAddress.address}</Text>
                     </View>
-                    <Button title='Update Profile' textStyle={{ color: '#fff' }} style={{ backgroundColor: colors.primary, marginHorizontal: 10, marginRight: 10, borderRadius: 10, marginTop: 20 }} onPress={handleProfile} />
+                    <Button title='Update Profile' textStyle={{ color: '#fff' }} style={{ backgroundColor: colors.primary, marginHorizontal: 10, marginRight: 10, borderRadius: 10, marginTop: 20,height:55 }} onPress={handleProfile} />
                     <View style={{ padding: 15, flexDirection: 'row', alignItems: "center", justifyContent: "center", marginVertical: 10 }}>
                         <View style={{ borderTopWidth: 1, borderTopColor: '#d3d3d3', width: screenWidth / 4 }} />
                         <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, marginHorizontal: 7, color: colors.fontGray, textAlign: "center" }}>or</Text>
                         <View style={{ borderTopWidth: 1, borderTopColor: '#d3d3d3', width: screenWidth / 4 }} />
                     </View>
-                    <Button title={userNgo ? 'Edit NGO Info' : 'Create NGO Profile'} textStyle={{ color: '#fff' }} style={{ backgroundColor: colors.primary, marginHorizontal: 10, marginRight: 10, borderRadius: 10, }} onPress={() => setNgoProfile(!ngoProfile)} />
+                    <Button title={userNgo ? 'Edit Ngo Info' : 'Join as NGO'} textStyle={{ color: '#fff' }} style={{ backgroundColor: colors.primary, marginHorizontal: 10, marginRight: 10, borderRadius: 10,height:55 }} onPress={() => setNgoProfile(!ngoProfile)} />
                     <ReactNativeModal isVisible={ngoProfile} style={{ margin: 0}}>
                         <ScrollView style={{ backgroundColor: "#fff", padding: 20 }}>
                             <View style={{ marginVertical: 10 }}>

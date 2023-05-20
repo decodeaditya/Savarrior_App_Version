@@ -11,7 +11,7 @@ export default function App() {
     <NavigationContainer>
       <AuthContextProvider>
         <FirebaseContextProvider>
-          <StatusBar backgroundColor={colors.white} />
+          <StatusBar style='auto' />
           <StackNavigator />
         </FirebaseContextProvider>
       </AuthContextProvider>

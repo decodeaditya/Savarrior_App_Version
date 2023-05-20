@@ -54,7 +54,7 @@ const SingleRescueScreen = ({ navigation }) => {
                         <Ionicons name='call-sharp' size={24} color={colors.primary} style={{ paddingRight: 10, }} />
                         <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, color: colors.font }}>Call</Text>
                     </Pressable>
-                    <Pressable onPress={()=>navigation.navigate("Map",data)} style={{
+                    <Pressable onPress={() => Linking.openURL(`https://www.google.com/maps/search/?api=1&query=  ${data.location.coords.latitude} ${data.location.coords.longitude}`)} style={{
                         flexDirection: "row",
                         justifyContent: "center", alignItems: "center",
                         backgroundColor: colors.bgGreen,

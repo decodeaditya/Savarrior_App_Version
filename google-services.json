@@ -7,14 +7,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:310461744278:android:d7e23ae69a90034fc26eb7",
+        "mobilesdk_app_id": "1:310461744278:android:9f97d25ddcd2d0fac26eb7",
         "android_client_info": {
-          "package_name": "com.devcost.savarrior"
+          "package_name": "com.devcost.savarriorApp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "310461744278-d0gto71uvdg4dv72shabn88oqloe7ud5.apps.googleusercontent.com",
+          "client_id": "310461744278-ntkocqenconhl93j6s6u14970vreoav2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

@@ -51,7 +51,7 @@ const SingleNgoScreen = ({ navigation }) => {
                         <Text style={{ fontSize: 16, fontFamily: FontVariants.weight600, marginTop: 5, color: colors.primary }}>Call</Text>
                     </Pressable>
                     <Pressable style={{ width: 50, alignItems: "center", margin: 10, marginLeft: 0 }}>
-                        <Ionicons name='location-sharp' color={colors.primary} size={24} style={{ backgroundColor: colors.bgGreen, borderWidth: 1, borderColor: colors.primary, alignSelf: "center", padding: 10, borderRadius: 100 }} onPress={() => Linking.openURL(`https://www.google.com/maps/search/?api=1&query=${data.location}`)} />
+                        <Ionicons name='location-sharp' color={colors.primary} size={24} style={{ backgroundColor: colors.bgGreen, borderWidth: 1, borderColor: colors.primary, alignSelf: "center", padding: 10, borderRadius: 100 }} onPress={() => Linking.openURL(`https://www.google.com/maps/search/?api=1&query=${data.location.includes(data.name) ? data.location : data.name+ data.location}`)} />
                         <Text style={{ fontSize: 16, fontFamily: FontVariants.weight600, marginTop: 5, color: colors.primary }}>Map</Text>
                     </Pressable>
                     <Pressable style={{ width: 50, alignItems: "center", margin: 10, marginLeft: 0 }}>

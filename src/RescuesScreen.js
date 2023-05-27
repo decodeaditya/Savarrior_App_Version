@@ -53,10 +53,10 @@ const RescuesScreen = ({ navigation }) => {
                     {query.length > 0 && <Ionicons name='close-outline' size={24} color={colors.fontGray} onPress={() => setQuery("")} />}
                 </View>
             </View>
-            <View style={{ borderTopWidth: 4, borderTopColor: '#f5f5f5', marginVertical: 25, marginBottom: 0 }} />
-            <ScrollView style={{ paddingHorizontal: 20, paddingVertical: 25 }} showsVerticalScrollIndicator={false}>
+            <View style={{ borderTopWidth: 1, borderTopColor: '#f5f5f5', marginVertical: 20, marginBottom: 0 }} />
+            <ScrollView style={{ paddingHorizontal: 20, paddingVertical: 25, }} showsVerticalScrollIndicator={false}>
                 {list.map((res, index) => (
-                    <RescueCard data={res} key={index} />
+                    <RescueCard data={res} key={index} style={{width:"100%",marginBottom:20}}/>
                 ))}
                 {list.length === 0 &&
                     <View style={{ justifyContent: "center", alignItems: "center", height: screenHeight / 2 }}>

@@ -5,8 +5,7 @@ import { Pressable } from 'react-native'
 import { Image } from 'react-native'
 import { FontVariants, colors } from '../theme'
 import { ScrollView } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
-import Carousel from '../components/Carousel'
+import { Ionicons, MaterialCommunityIcons, Foundation } from '@expo/vector-icons'
 import { screenWidth } from '../consts'
 import Button from '../components/Button'
 import { useRoute } from '@react-navigation/native'
@@ -14,7 +13,8 @@ import { useRoute } from '@react-navigation/native'
 const SingleRescueScreen = ({ navigation }) => {
 
     const route = useRoute()
-    const data = route.params
+    const data = route.params.data
+    const distance = route.params.distanceFromPoint
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: colors.white, }}>
@@ -37,12 +37,12 @@ const SingleRescueScreen = ({ navigation }) => {
                         paddingRight: 15,
                         paddingTop: 5
                     }}>
-                        <Ionicons name='location-sharp' size={24} color={colors.primary} style={{ paddingRight: 5 }} />
-                        <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, color: colors.font,paddingRight:10 }} numberOfLines={2}>{data.location.formattedLocation}</Text>
+                        <MaterialCommunityIcons name='map-marker-distance' size={24} color={colors.primary} style={{ paddingRight: 5 }} />
+                        <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, color: colors.font, paddingRight: 10 }} numberOfLines={2}>{distance} Away</Text>
                     </Pressable>
                 </View>
-                <View style={{ flexDirection: "row", justifyContent: "center", marginHorizontal: 10 }}>
-                    <Pressable onPress={()=>Linking.openURL(`tel:${data.phoneNumber}`)}  style={{
+                <View style={{ flexDirection: "row", justifyContent: "center" }}>
+                    <Pressable onPress={() => Linking.openURL(`tel:${data.phoneNumber}`)} style={{
                         flexDirection: "row",
                         justifyContent: "center", alignItems: "center",
                         backgroundColor: colors.bgGreen,
@@ -63,11 +63,11 @@ const SingleRescueScreen = ({ navigation }) => {
                         width: "45%",
                         margin: 5
                     }}>
-                        <Ionicons name='map-outline' size={24} color={colors.primary} style={{ paddingRight: 10, }} />
+                        <Ionicons name='map' size={24} color={colors.primary} style={{ paddingRight: 10, }} />
                         <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, color: colors.font }}>Map</Text>
                     </Pressable>
                 </View>
-                <View style={{ borderTopWidth: 2, borderTopColor: "#f5f5f5", marginVertical: 10, marginBottom: 0 }} />
+                <View style={{ borderTopWidth: 1, borderTopColor: "#f5f5f5", marginVertical: 10, marginBottom: 0 }} />
                 <Pressable style={{
                     flexDirection: "row",
                     justifyContent: "flex-start", alignItems: "center",
@@ -77,10 +77,21 @@ const SingleRescueScreen = ({ navigation }) => {
                     <Ionicons name='time-outline' size={24} color={colors.primary} style={{ paddingRight: 10, }} />
                     <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, color: colors.font }}>{data.date}, {data.time}</Text>
                 </Pressable>
-                <View style={{ borderTopWidth: 2, borderTopColor: "#f5f5f5" }} />
+                <View style={{ borderTopWidth: 1, borderTopColor: "#f5f5f5", marginBottom: 0 }} />
+                <Pressable style={{
+                    flexDirection: "row",
+                    justifyContent: "flex-start", alignItems: "center",
+                    width: "100%",
+
+                    paddingVertical: 20, paddingHorizontal: 20
+                }}>
+                    <Ionicons name='location-sharp' size={24} color={colors.primary} style={{ paddingRight: 10, }} />
+                    <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, width: '90%', color: colors.font }}>{data.location.formattedLocation}</Text>
+                </Pressable>
+                <View style={{ borderTopWidth: 1, borderTopColor: "#f5f5f5" }} />
             </ScrollView>
-            <Pressable style={{ padding: 10, elevation: 10 }}>
-                <Button title='Call Now' style={{ borderRadius: 10 }} textStyle={{ color: colors.white }} onPress={()=>Linking.openURL(`tel:${data.phoneNumber}`)}/>
+            <Pressable style={{ padding: 10, borderTopColor: colors.primary, borderTopWidth: 0.5, backgroundColor: colors.bgGreen }}>
+                <Button title='Call Now' style={{ borderRadius: 10 }} textStyle={{ color: colors.white }} onPress={() => Linking.openURL(`tel:${data.phoneNumber}`)} />
             </Pressable>
         </SafeAreaView>
     )

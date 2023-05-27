@@ -24,6 +24,41 @@ export const fetchAddress = async (latitude, longitude) => {
     return locate
 }
 
+export const HomeCarousel = [
+    {
+        bg:"#fff2d0",
+        border:"#ffe7ab",
+        heading:"Get Involved in Rescues Nearby!",
+        buttonText:"Help Now",
+        link:"Rescues",
+        image:require("../assets/1.png")
+    },
+    {
+        bg:"#b9e3f1",
+        border:"#68a5d1",
+        heading:"Spoted A Rescue? Report Now!",
+        buttonText:"Report",
+        link:"Report",
+        image:require("../assets/2.png")
+    },
+    {
+        bg:"#ffdfd2",
+        border:"#fdc9b3",
+        heading:"Connect with Rescue Groups Now!",
+        buttonText:"Connect",
+        link:"NGOs",
+        image:require("../assets/3.png")
+    },
+    {
+        bg:"#dae5fb",
+        border:"#adbce5",
+        heading:"Want to Meet Vets? Connect Now!",
+        buttonText:"Connect",
+        link:"Vets",
+        image:require("../assets/4.png")
+    },
+]
+
 export const AllChips = [
     {
         name: "All",

@@ -9,6 +9,7 @@ import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { useNavigation } from "@react-navigation/native";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { getDistance } from "geolib";
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -147,6 +148,13 @@ export const AuthContextProvider = ({ children }) => {
         notificationListener.current = Notifications.addNotificationReceivedListener(async (notification) => {
             setNotification(notification);
             const data = notification.request.content.data
+
+            
+            const distanceFromPoint = getDistance(
+                { latitude: Number(newCoords?.latitude), longitude: Number(newCoords?.longitude) },
+                { latitude: Number(data.location.coords.latitude), longitude: Number(data.location.coords.longitude) }
+            )
+
             const localList = await AsyncStorage.getItem("Notifications")
             setAlertList(localList)
             AlertList.push(data)
@@ -161,8 +169,21 @@ export const AuthContextProvider = ({ children }) => {
         });
 
         responseListener.current = Notifications.addNotificationResponseReceivedListener(async (response) => {
+
+            
             const data = response.notification.request.content.data
-            navigation.navigate("SingleRescue", data)
+
+            const distanceFromPoint = getDistance(
+                { latitude: Number(newCoords?.latitude), longitude: Number(newCoords?.longitude) },
+                { latitude: Number(data.location.coords.latitude), longitude: Number(data.location.coords.longitude) }
+            )
+
+            const calcdist = distanceFromPoint / 1000 < 1 ? `${distanceFromPoint} Meters` : `${distanceFromPoint / 1000}KM`
+
+            navigation.navigate("SingleRescue", {
+                data: data,
+                distanceFromPoint: calcdist
+            })
             const filterdList = AlertList.filter((item) => {
                 return item.id !== data.id
             })

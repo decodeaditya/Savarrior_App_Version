@@ -75,7 +75,7 @@ const SingleNgoScreen = ({ navigation }) => {
                     <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, width: '90%', color: colors.font }}>{data.location}</Text>
                 </Pressable>
                 <View style={{ borderTopWidth: 2, borderTopColor: "#f5f5f5", marginBottom: 10 }} />
-                <View style={{ paddingHorizontal: 20, paddingVertical: 20 }}>
+                <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
                     <Text style={{ fontFamily: FontVariants.weight700, fontSize: 24, paddingBottom: 15 }}>Animals They Serve</Text>
                     <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                         {data.animals.map((res, index) => (
@@ -108,7 +108,7 @@ const SingleNgoScreen = ({ navigation }) => {
 
                 <View style={{ borderTopWidth: 2, borderTopColor: "#f5f5f5", marginBottom: 10 }} />
 
-                <View style={{ paddingHorizontal: 20, paddingVertical: 20, marginBottom: 30 }}>
+                <View style={{ paddingHorizontal: 20, paddingTop: 20, marginBottom: 30 }}>
                     <Text style={{ fontFamily: FontVariants.weight700, fontSize: 24, paddingBottom: 15 }}>Their Services</Text>
                     <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                         {data.services.map((res, index) => (
@@ -125,7 +125,7 @@ const SingleNgoScreen = ({ navigation }) => {
                     </View>
                 </View>
             </ScrollView>
-            <Pressable style={{ padding: 10, elevation: 10 }}>
+            <Pressable style={{ padding: 10,borderTopColor:colors.primary,borderTopWidth:0.2,backgroundColor:colors.bgGreen }}>
                 <Button title='Emergency' style={{ backgroundColor: '#ff5c5c', borderRadius: 12 }} textStyle={{ color: colors.white }} onPress={() => { Linking.openURL(`tel:${data?.phoneNumber}`) }} />
             </Pressable>
         </SafeAreaView>

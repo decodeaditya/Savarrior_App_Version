@@ -92,22 +92,23 @@ const ReportScreen = ({ navigation }) => {
   const openCamera = async () => {
     // Ask the user for the permission to access the camera
     const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+    console.log(permissionResult)
 
     if (permissionResult.granted === false) {
-      alert("You've refused to allow this appp to access your camera!");
+      Alert.alert("Camera Access Denied", "You've refused to allow Savarrior to access your Camera! Allow to Coutinue");
       return;
     }
 
-    const result = await ImagePicker.launchCameraAsync({
-      quality: 0.6
-    });
+      const result = await ImagePicker.launchCameraAsync({
+        quality: 0.6
+      });
 
-    if (!result.canceled) {
-      setImagepath(result.assets[0].uri)
-    }
-    if (result.canceled) {
-      setLoading(false)
-    }
+      if (!result.canceled) {
+        setImagepath(result.assets[0].uri)
+      }
+      if (result.canceled) {
+        setLoading(false)
+      }
   }
 
 

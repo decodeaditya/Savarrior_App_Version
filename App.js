@@ -11,7 +11,7 @@ export default function App() {
     <NavigationContainer>
       <AuthContextProvider>
         <FirebaseContextProvider>
-          <StatusBar style='auto' />
+          <StatusBar style='dark' />
           <StackNavigator />
         </FirebaseContextProvider>
       </AuthContextProvider>

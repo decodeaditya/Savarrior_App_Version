@@ -16,13 +16,17 @@ import { screenHeight, screenWidth } from '../consts';
 import ReactNativeModal from 'react-native-modal';
 import CheckBox from 'expo-checkbox';
 import { doc, setDoc } from 'firebase/firestore';
+import { useRoute } from '@react-navigation/native';
 
 const ProfileScreen = ({ navigation }) => {
 
-    const [ngoProfile, setNgoProfile] = useState(false)
+    const route = useRoute()
+    const ngoBool = route.params
+
+    const [ngoProfile, setNgoProfile] = useState(ngoBool ? ngoBool : false)
     const [loading, setLoading] = useState(false)
 
-    const [selectedTab, setSelectedTab] = useState("rescues")
+    const [selectedTab, setSelectedTab] = useState(ngoBool ? "info" :"rescues")
     const { displayCurrentAddress, CurrentUser } = useContext(AuthContext)
     const [mobile, setMobile] = useState(null)
 
@@ -43,8 +47,8 @@ const ProfileScreen = ({ navigation }) => {
     const userNgo = filterdList[0]
 
     const [website, setSite] = useState(userNgo ? userNgo.web : "")
-    const [City,setCity] = useState(userNgo ? userNgo.city : displayCurrentAddress.city)
-    const [address, setAddress] = useState(userNgo ? userNgo.location :  displayCurrentAddress.address)
+    const [City, setCity] = useState(userNgo ? userNgo.city : displayCurrentAddress.city)
+    const [address, setAddress] = useState(userNgo ? userNgo.location : displayCurrentAddress.address)
     const [img1, setImg1] = useState(userNgo ? userNgo.images.img1 : null)
     const [img2, setImg2] = useState(userNgo ? userNgo.images.img2 : null)
 
@@ -70,7 +74,7 @@ const ProfileScreen = ({ navigation }) => {
                     email: CurrentUser?.email,
                     phoneNumber: mobile,
                     web: website,
-                    city:City,
+                    city: City,
                     images: {
                         img1: img1,
                         img2: img2
@@ -127,16 +131,16 @@ const ProfileScreen = ({ navigation }) => {
             {UserRescuesList.length === 0 &&
                 <View style={{ justifyContent: "center", alignItems: "center", height: screenHeight / 3 }}>
                     <Image source={{ uri: 'https://img.freepik.com/free-vector/add-user-concept-illustration_114360-567.jpg?w=740&t=st=1684039832~exp=1684040432~hmac=6747383d99b5db59eb170357ef01d47b291d8d3828e488f002dc3920382962a9' }} style={{ width: 170, height: 170 }} />
-                    <Text style={{ fontFamily: FontVariants.weight600, fontSize: 19, color: colors.fontGray,textTransform:"uppercase" }}>No Rescues Here</Text>
+                    <Text style={{ fontFamily: FontVariants.weight600, fontSize: 19, color: colors.fontGray, textTransform: "uppercase" }}>No Rescues Here</Text>
                 </View>
             }
         </View>
     )
 
-    const signout = async() => {
+    const signout = async () => {
         await AsyncStorage.clear()
         signOut(auth)
-        await AsyncStorage.setItem("isLaunched","true")
+        await AsyncStorage.setItem("isLaunched", "true")
         navigation.navigate("Login")
     }
 
@@ -197,8 +201,8 @@ const ProfileScreen = ({ navigation }) => {
             <Pressable style={{ alignItems: 'center', padding: 15 }}>
                 <Image source={{ uri: CurrentUser.photoURL }} style={{ borderRadius: 20, width: 120, height: 120 }} />
                 <Text style={{ fontSize: 27, marginTop: 10, fontFamily: FontVariants.weight800, color: colors.font, }}>{CurrentUser.displayName}</Text>
-                <Text style={{ fontSize: 18, marginTop: 3, fontFamily: FontVariants.weight700, color: colors.fontGray,}}>{userNgo ? "Animal Welfare NGO" : "Warrior for Animals"}</Text>
-                <Button onPress={signout} title='Logout' style={{fontFamily: FontVariants.weight700, backgroundColor: colors.primary, borderRadius: 4, marginTop: 19 }} textStyle={{ color: '#fff',fontSize:16,textTransform:"uppercase",fontFamily:FontVariants.weight600 }} />
+                <Text style={{ fontSize: 18, marginTop: 3, fontFamily: FontVariants.weight700, color: colors.fontGray, }}>{userNgo ? "Animal Welfare NGO" : "Animal Welfare Warrior"}</Text>
+                <Button onPress={signout} title='Logout' style={{ fontFamily: FontVariants.weight700, backgroundColor: colors.primary, borderRadius: 4, marginTop: 19 }} textStyle={{ color: '#fff', fontSize: 16, textTransform: "uppercase", fontFamily: FontVariants.weight600 }} />
             </Pressable>
             <Pressable style={{ flexDirection: 'row', marginTop: 20, marginHorizontal: 15, padding: 10, backgroundColor: "whitesmoke", borderRadius: 10 }}>
                 <Button title='My Rescues' style={{ ...styles.shadow, width: "48%", backgroundColor: selectedTab === 'rescues' ? '#fff' : 'whitesmoke', marginRight: 10, borderRadius: 10, elevation: selectedTab === "rescues" ? 3 : 0 }} textStyle={{ color: selectedTab === 'rescues' ? colors.font : colors.fontGray }} onPress={() => setSelectedTab('rescues')} />
@@ -228,14 +232,20 @@ const ProfileScreen = ({ navigation }) => {
                         <Text style={{ fontSize: 18, paddingHorizontal: 10, color: colors.font, fontFamily: FontVariants.weight500 }}>Location</Text>
                         <Text style={{ fontSize: 18, fontFamily: FontVariants.weight500, paddingHorizontal: 20, backgroundColor: "#f5f5f5", paddingVertical: 15, marginHorizontal: 10, marginTop: 10, borderRadius: 10, color: colors.secondry }}>{displayCurrentAddress.address}</Text>
                     </View>
-                    <Button title='Update Profile' textStyle={{ color: '#fff' }} style={{ backgroundColor: colors.primary, marginHorizontal: 10, marginRight: 10, borderRadius: 10, marginTop: 20,height:55 }} onPress={handleProfile} />
+                    <Button title='Update Profile' textStyle={{ color: '#fff' }} style={{ backgroundColor: colors.primary, marginHorizontal: 10, marginRight: 10, borderRadius: 10, marginTop: 20, height: 55 }} onPress={handleProfile} />
                     <View style={{ padding: 15, flexDirection: 'row', alignItems: "center", justifyContent: "center", marginVertical: 10 }}>
                         <View style={{ borderTopWidth: 1, borderTopColor: '#d3d3d3', width: screenWidth / 4 }} />
                         <Text style={{ fontFamily: FontVariants.weight600, fontSize: 18, marginHorizontal: 7, color: colors.fontGray, textAlign: "center" }}>or</Text>
                         <View style={{ borderTopWidth: 1, borderTopColor: '#d3d3d3', width: screenWidth / 4 }} />
                     </View>
-                    <Button title={userNgo ? 'Edit Ngo Info' : 'Join as NGO'} textStyle={{ color: '#fff' }} style={{ backgroundColor: colors.primary, marginHorizontal: 10, marginRight: 10, borderRadius: 10,height:55 }} onPress={() => setNgoProfile(!ngoProfile)} />
-                    <ReactNativeModal isVisible={ngoProfile} style={{ margin: 0}}>
+                    <Button title={userNgo ? 'Edit Ngo Info' : 'Join as NGO'} textStyle={{ color: '#fff' }} style={{ backgroundColor: colors.primary, marginHorizontal: 10, marginRight: 10, borderRadius: 10, height: 55 }} onPress={() => setNgoProfile(!ngoProfile)} />
+                    <ReactNativeModal isVisible={ngoProfile} style={{ margin: 0 }}>
+                        <View style={{ flexDirection: 'row', alignItems: "center", paddingHorizontal: 15, paddingTop: 10,backgroundColor:colors.white }}>
+                            <Pressable style={{ backgroundColor: "white", padding: 10, borderRadius: 10, marginRight: 5 }} onPress={() => setNgoProfile(false)}>
+                                <Image source={{ uri: "https://cdn-icons-png.flaticon.com/512/271/271220.png" }} style={{ width: 20, height: 20, }} />
+                            </Pressable>
+                            <Text style={{ fontSize: 24, fontFamily: FontVariants.weight700, color: colors.secondry, textAlign: "center" }}>NGO Profile</Text>
+                        </View>
                         <ScrollView style={{ backgroundColor: "#fff", padding: 20 }}>
                             <View style={{ marginVertical: 10 }}>
                                 <Text style={{ fontSize: 18, paddingHorizontal: 10, color: colors.font, fontFamily: FontVariants.weight500 }}>Organisation Name</Text>
@@ -304,7 +314,7 @@ const ProfileScreen = ({ navigation }) => {
                                     ))}
                                 </View>
                             </View>
-                            <View style={{ flexDirection: "row", marginTop: 20, flexDirection: "row",marginBottom:10 }}>
+                            <View style={{ flexDirection: "row", marginTop: 20, flexDirection: "row", marginBottom: 10 }}>
                                 <Button title="Done" style={{ width: "48%", marginBottom: 20, borderRadius: 10, marginRight: 10 }} textStyle={{ color: colors.white }} onPress={handleNgo} />
                                 <Button title="Cancel" style={{ width: "48%", marginBottom: 20, borderRadius: 10, backgroundColor: "#ff5c5c" }} textStyle={{ color: colors.white }} onPress={() => setNgoProfile(!ngoProfile)} />
                             </View>

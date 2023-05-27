@@ -53,7 +53,7 @@ const NgosScreen = ({ navigation }) => {
                     {query.length > 0 && <Ionicons name='close-outline' size={24} color={colors.fontGray} onPress={() => setQuery("")} />}
                 </View>
             </View>
-            <View style={{ borderTopWidth: 4, borderTopColor: '#f5f5f5', marginVertical: 25, marginBottom: 0 }} />
+            <View style={{ borderTopWidth: 1, borderTopColor: '#f5f5f5', marginVertical: 25, marginBottom: 0 }} />
             <ScrollView style={{ paddingHorizontal: 20, paddingVertical: 25 }} showsVerticalScrollIndicator={false}>
                 {list.map((res, index) => (
                     <NgoCard data={res} key={index} style={{ width: "100%", marginBottom: 25 }} />

@@ -1,19 +1,32 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Pressable } from 'react-native'
 import { FontVariants, colors } from '../theme'
 import { screenWidth } from '../consts'
 import { Image } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native'
+import { getDistance } from 'geolib'
+import { AuthContext } from '../AuthContext'
 
-const Notification = ({ data,AlertList }) => {
+const Notification = ({ data, AlertList }) => {
 
     const [list, setAlertList] = useState(AlertList)
     const navigation = useNavigation()
+    const {newCoords} = useContext(AuthContext)
 
+    
     const notificationHandle = async (d) => {
-        navigation.navigate("SingleRescue", d)
+        const distanceFromPoint = getDistance(
+            { latitude: Number(newCoords?.latitude), longitude: Number(newCoords?.longitude) },
+            { latitude: Number(d.location.coords.latitude), longitude: Number(d.location.coords.longitude) }
+        )
+    
+        const calcdist = distanceFromPoint / 1000 < 1 ? `${distanceFromPoint} Meters` : `${distanceFromPoint / 1000}KM`
+        navigation.navigate("SingleRescue", {
+            data: d,
+            distanceFromPoint: calcdist
+        })
         const filterdList = list.filter((item) => {
             return item.id !== d.id
         })
@@ -28,7 +41,7 @@ const Notification = ({ data,AlertList }) => {
     }
 
     return (
-        <Pressable  onPress={() => notificationHandle(data)} style={{ ...styles.shadow, borderColor: colors.primary, borderWidth: 0.3, borderRadius: 10, margin: 15, marginVertical: 10, backgroundColor: colors.bgGreen }}>
+        <Pressable onPress={() => notificationHandle(data)} style={{ ...styles.shadow, borderColor: colors.primary, borderWidth: 0.3, borderRadius: 10, margin: 15, marginVertical: 10, backgroundColor: colors.bgGreen }}>
             <View style={{ flexDirection: "row", alignItems: "center", paddingBottom: 10, paddingHorizontal: 10, padding: 10, }}>
                 <View>
                     <Image source={{ uri: data.photoUrl }} style={{ borderRadius: 10, width: 100, height: 90, objectFit: "cover" }} />

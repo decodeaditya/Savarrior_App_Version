@@ -15,7 +15,7 @@ const NgoCard = ({style,locationStyle,data}) => {
     return (
         <TouchableOpacity onPress={()=>navigation.navigate("SingleNgo",data)} activeOpacity={1} style={{backgroundColor: '#f1faf7', alignItems: "center", borderRadius: 10, width: screenWidth-50, marginRight: 25, borderWidth: 0.7, borderColor: colors.lightGreen, ...style, }}>
             <View style={{ width: "100%", alignItems: 'center', padding: 20,paddingBottom:10 }}>
-                <Image source={{ uri: data.images.img1 }} style={{ width: "100%", height: 250, objectFit: "cover", borderRadius: 20 }} />
+                <Image source={{ uri: data.images.img1 }} style={{ width: "100%", height: 220, objectFit: "cover", borderRadius: 20 }} />
             </View>
             <View style={{marginHorizontal:15,width:"85%"}}>
                 <View>
@@ -23,9 +23,9 @@ const NgoCard = ({style,locationStyle,data}) => {
                 </View>
                 <Pressable style={{
                     flexDirection: "row",
-                    paddingVertical: 10, justifyContent: "flex-start",
+                    paddingVertical: 10, alignItems:"center"
                 }}>
-                    <Ionicons name='location-outline' size={24} color={colors.primary} />
+                    <Ionicons name='location-sharp' size={24} color={colors.primary} />
                     <Text style={{ marginLeft:5,fontSize: 17, color: colors.font, fontFamily: FontVariants.weight600, width: "90%", ...locationStyle}} numberOfLines={2}>{data.location}</Text>
                 </Pressable>
                 <Button title='View' onPress={()=>navigation.navigate("SingleNgo",data)} style={{borderRadius:10,marginBottom:20,marginTop:8}} textStyle={{color:colors.white}}/>

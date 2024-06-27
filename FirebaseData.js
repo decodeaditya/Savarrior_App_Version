@@ -35,6 +35,7 @@ export const FirebaseContextProvider = ({ children }) => {
         })
     }, [])
 
+
     const [tokens, setTokens] = useState([])
 
     useEffect(() => {
@@ -47,7 +48,7 @@ export const FirebaseContextProvider = ({ children }) => {
     }, [])
 
     return (
-        <FirebaseContext.Provider value={{ RescuesList, NgosList,tokens }}>
+        <FirebaseContext.Provider value={{ RescuesList, NgosList, tokens }}>
             {children}
         </FirebaseContext.Provider>
     )

@@ -145,7 +145,7 @@ const HomeScreen = ({ navigation }) => {
                     </View>
                     <ScrollView showsHorizontalScrollIndicator={false} horizontal style={{ paddingTop: 30 }}>
                         {NgosList.map((res, index) => (
-                            <NgoCard data={res} key={index} style={{ marginBottom: 25, marginRight: index === NgosList.length - 1 ? 0 : 25, width: screenWidth-70 }} />
+                            <NgoCard data={res} key={index} style={{ marginBottom: 25, marginRight: index === NgosList.length - 1 ? 0 : 15, width: screenWidth-75 }} />
                         ))}
                         {NgosList.length > 5 && <Pressable onPress={() => navigation.navigate("NGOs")} style={{ justifyContent: "center", alignItems: "center", paddingRight: 15 }}>
                             <Entypo name='chevron-thin-right' size={20} color={colors.primary} style={{ padding: 15, borderWidth: 1, borderColor: colors.primary, marginLeft: 25, backgroundColor: colors.bgGreen, borderRadius: 50 }} />

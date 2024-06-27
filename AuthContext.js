@@ -237,7 +237,7 @@ export const AuthContextProvider = ({ children }) => {
                 finalStatus = status;
             }
             if (finalStatus !== 'granted') {
-                alert('Failed to get push token for push notification!');
+                Alert.alert('','Allow for Notifications to Get Rescues and Other Updates!');
                 return;
             }
             token = (await Notifications.getExpoPushTokenAsync()).data;

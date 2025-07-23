@@ -1,61 +1,89 @@
-![logo](assets/logo.png)
-# Savarrior: Animal Rescue & Vegan Lifestyle App
+<p align="center">
+  <img src="assets/logo.png" width="140" alt="Savarrior Logo"/>
+</p>
+
+<h1 align="center">🌱 Savarrior: Animal Rescue & Vegan Lifestyle App</h1>
+<p align="center">
+  <em>Where compassion takes action.</em>
+</p>
+
+---
 
 ## Overview
 
-**Savarrior** is a mission-driven mobile application empowering users to take action in animal rescue, report cruelty, and embrace a vegan lifestyle. Developed with React Native, Savarrior bridges the gap between immediate help and education, providing tools to both report emergencies and access resources on animal welfare and plant-based living.
+**Savarrior** is a mission-driven, open-source mobile application designed for animal lovers and changemakers. Rescue animals, report cruelty, and access vegan resources—all with an intuitive, accessible interface.
 
-This project is open source for educational and non-commercial use only, inviting community contributions while retaining authorship by decodeaditya.
-
----
-
-## Table of Contents
-
-- [Features](#features)
-- [Screenshots](#screenshots)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+Released for educational and non-commercial use only, with authorship by [decodeaditya](https://github.com/decodeaditya).
 
 ---
 
-## Features
+## 🌟 Features
 
-- **Animal Rescue:** Instantly report animal cruelty and emergencies
-- **Support Network:** Connect with local veterinarians and animal welfare organizations
-- **Vegan Hub:** Comprehensive library for vegan education and recipes
-- **User Profile:** Personalize experience and manage reports/bookmarks *(if implemented)*
-- **Dark Mode:** Optimized, accessible user interface
-- **Responsive Design:** Smooth experience across Android and iOS
-- **Push Notifications:** Stay informed on rescue status and updates *(if implemented)*
-
----
-
-## Screenshots
-
-Explore the BeatBox Music Player interface through these screenshots:
-
-| Home  | Ngos  | Report Rescue   
-|-------------|--------------|-----------|
-| ![Home Screen](assets/Screenshot%201.png) | ![Player Screen](assets/Screenshot%202.png) | ![Favorites Screen](assets/Screenshot%205.png) |
+- 🚨 Instantly report animal cruelty or emergencies
+- 🤝 Connect with veterinarians and rescue organizations nearby
+- 🌱 Explore a comprehensive vegan hub: guides, recipes, plant-based knowledge
+- 🙋 Personalize your experience & manage reports or bookmarks (if implemented)
+- 🌚 Dark Mode for an accessible, modern look
+- 📲 Responsive UI for Android & iOS devices
+- 🔔 Real-time notifications and updates (if supported)
 
 ---
 
-## Tech Stack
+## 📸 Screenshots
 
-- **React Native**: Cross-platform app development
-- **JavaScript/TypeScript**: Core language
-- **Redux**: State management *(if used)*
-- **Expo CLI**: Development and testing
-- **Firebase**: Backend for authentication, database *(if used)*
-- Additional libraries as required (please specify in your documentation)
+| Home                           | Ngos                           | Report Rescue                   |
+|---------------------------------|--------------------------------|---------------------------------|
+| ![Home](assets/Screenshot%201.png) | ![Ngos](assets/Screenshot%202.png) | ![Report](assets/Screenshot%205.png) |
 
 ---
 
-## Project Structure
+# 📥 Download SAVARRIOR
+
+🚫 **Not available on Play Store**
+
+➡️ Get it from:
+
+- 🌐 **[GitHub Releases →](https://github.com/decodeaditya/Savarrior_App_Version/releases/download/android/Savarrior.apk)**  
+  Download `.apk` files and source packages from the Releases section.
+
+- 📄 **[Via This Website](https://savarrior.netlify.app/download-app/)**  
+  Visit the website’s _Download_ section to get the latest version directly.
+
+---
+
+## 🧠 Developer Info
+
+Made with ❤️ by [**decodeaditya**](https://github.com/decodeaditya)  
+📧 Instragram: `https://instagram.com/decodeaditya`
+
+Want to contribute ideas, raise issues, or support the project?  
+Feel free to fork, star, or submit a pull request anytime!
+
+---
+
+**How to Install:**
+1. Download the `.apk` file to your Android device.
+2. Go to Settings > Security > Allow installation from unknown sources.
+3. Open your Downloads folder and tap the APK to install.
+4. Launch the app and start helping animals!
+
+---
+
+## 🛠 Tech Stack
+
+| Technology         | Purpose                                   |
+|--------------------|-------------------------------------------|
+| **React Native**   | Cross-platform mobile app framework       |
+| **JavaScript/TypeScript** | Component and logic implementation |
+| **Redux**          | State management (if used)                |
+| **Expo CLI**       | Development and testing                   |
+| **Firebase**       | Backend (auth/database, if used)          |
+| *More*             | Animations, navigation, libraries as needed|
+
+---
+
+
+## 📁 Project Structure
 
     Savarrior_App_Version/
     ├── assets/ # Images, icons, etc.
@@ -95,50 +123,55 @@ Ensure you have [Node.js](https://nodejs.org/) and [Expo CLI](https://docs.expo.
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
-Your contributions are welcome! To contribute:
+We welcome contributions!
 
-- Fork the repository
-- Create a new branch: `git checkout -b feature/your-feature`
-- Commit your changes: `git commit -m "Add your feature"`
-- Push to your branch: `git push origin feature/your-feature`
-- Open a pull request
+- **Fork** the repository
+- **Create a branch:**  
+  `git checkout -b feature/your-feature`
+- **Commit & push:**  
+  `git commit -m "Describe your feature"`  
+  `git push origin feature/your-feature`
+- **Open a Pull Request** (clearly describe your changes)
 
-Please:
-- Follow React Native’s style guidelines and best practices.
-- Document your code with comments where needed.
-- Retain original authorship and attribution to decodeaditya.
-- Do **not** claim ownership, or use/redistribute the app or code for commercial purposes without permission.
+**Contributor Guidelines:**
+- Follow React Native best practices and style guidelines
+- Use comments for clarity where appropriate
+- Retain original author credit (decodeaditya)
+- Do *not* use or rebrand the app/code for commercial purposes without permission
 
-Submit bug reports or suggestions via the [Issues](../../issues) page.
-
----
-
-## License
-
-This project is open source under the MIT License, **with the condition that attribution to decodeaditya is retained**.
-
-**You ARE permitted to:**
-- View, fork, and contribute for educational and non-commercial use
-- Test and use the app personally
-
-**You are NOT permitted to:**
-- Claim the project as your own
-- Remove original author attribution (decodeaditya)
-- Use the app or code for commercial gain without written permission
-
-Please see the LICENSE file for full terms.
+Report bugs or feature requests via the [Issues](../../issues) page.
 
 ---
 
-## Contact
+## ⚖️ License
 
-Maintainer: [decodeaditya](https://github.com/decodeaditya)
+Open source under the **MIT License**, with required attribution to decodeaditya.
 
-For support or feedback, open an issue in this repository.
+**You may:**
+- View, fork, and contribute for learning and non-commercial use
+- Use the app personally and suggest enhancements
+
+**You may NOT:**
+- Claim ownership or remove author credit
+- Use the code/app for commercial gain without permission
+
+See LICENSE for full details.
 
 ---
 
-> *Savarrior—where compassion takes action.*
+## 📬 Contact
+
+**Maintainer:** [decodeaditya](https://github.com/decodeaditya)  
+Feedback or questions?  
+Open an issue or join the discussion tab.
+
+---
+
+<p align="center">
+  <em>
+    "Be the voice for the voiceless—start with a tap. Your actions matter."
+  </em>
+</p>
 

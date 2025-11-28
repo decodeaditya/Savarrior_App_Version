@@ -11,9 +11,9 @@
 
 ## Overview
 
-**Savarrior** is a mission-driven, open-source mobile application designed for animal lovers and changemakers. Rescue animals, report cruelty, and access vegan resources—all with an intuitive, accessible interface.
+**Savarrior** is a mission-driven, mobile application designed for animal lovers and changemakers. Rescue animals, report cruelty, and access vegan resources—all with an intuitive, accessible interface.
 
-Released for educational and non-commercial use only, with authorship by [decodeaditya](https://github.com/decodeaditya).
+Authorship by [decodeaditya](https://github.com/decodeaditya).
 
 ---
 
@@ -57,7 +57,7 @@ Made with ❤️ by [**decodeaditya**](https://github.com/decodeaditya)
 📧 Instragram: `https://instagram.com/decodeaditya`
 
 Want to contribute ideas, raise issues, or support the project?  
-Feel free to fork, star, or submit a pull request anytime!
+Get Access to App Code and Contribute by mailing to savarrior@gmail.com
 
 ---
 

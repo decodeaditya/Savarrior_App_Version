@@ -2,7 +2,7 @@
   <img src="assets/logo.png" width="140" alt="Savarrior Logo"/>
 </p>
 
-<h1 align="center">🌱 Savarrior: Animal Rescue & Vegan Lifestyle App</h1>
+<h1 align="center">🌱 Savarrior: Animal Rescue & Vegan Library App</h1>
 <p align="center">
   <em>Where compassion takes action.</em>
 </p>
@@ -22,8 +22,6 @@ Authorship by [decodeaditya](https://github.com/decodeaditya).
 - 🚨 Instantly report animal cruelty or emergencies
 - 🤝 Connect with veterinarians and rescue organizations nearby
 - 🌱 Explore a comprehensive vegan hub: guides, recipes, plant-based knowledge
-- 🙋 Personalize your experience & manage reports or bookmarks (if implemented)
-- 🌚 Dark Mode for an accessible, modern look
 - 📲 Responsive UI for Android & iOS devices
 - 🔔 Real-time notifications and updates (if supported)
 
@@ -74,10 +72,9 @@ Get Access to App Code and Contribute by mailing to savarrior@gmail.com
 | Technology         | Purpose                                   |
 |--------------------|-------------------------------------------|
 | **React Native**   | Cross-platform mobile app framework       |
-| **JavaScript/TypeScript** | Component and logic implementation |
-| **Redux**          | State management (if used)                |
+| **JavaScript/TypeScript** | Component and logic implementation 
 | **Expo CLI**       | Development and testing                   |
-| **Firebase**       | Backend (auth/database, if used)          |
+| **Firebase**       | Backend (auth/database)          |
 | *More*             | Animations, navigation, libraries as needed|
 
 ---
